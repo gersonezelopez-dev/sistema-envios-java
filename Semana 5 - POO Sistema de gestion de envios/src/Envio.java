@@ -1,5 +1,6 @@
 import java.net.PortUnreachableException;
 import java.security.PublicKey;
+import java.util.Scanner;
 
 public class Envio {
 
@@ -167,4 +168,60 @@ public class EnvioNacional extends Envio {
             }
         }
 
-        
+import java.util.Scanner;
+
+        public class Main {
+
+        public static Void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            int Opcion;
+            String Continuar;
+
+            do {
+
+                System.out.println("\n=========================");
+                System.out.println("     SISTEMA DE ENVÍOS     ");
+                System.out.println("===========================");
+                System.out.println("1. Registrar Envío Nacional");
+                System.out.println("2. Registrar Envío Internancional");
+                System.out.println("3. Salir");
+
+                Opcion = leerEntero(scanner, "Seleccione una opción");
+
+                switch (Opcion) {
+
+                    case 1:
+                        RegistrarEnvioNacional(scanner);
+                        Continuar = PreguntarContinuar(scanner);
+
+                        if (Continuar.equalsIgnoreCase("NO")) {
+                            Opcion = 3;
+                        }
+                        break;
+
+                    case 2:
+                        RegistrarEnvioInternacional(scanner);
+                        Continuar = PreguntarContinuar(scanner);
+
+                        if (Continuar.equalsIgnoreCase("NO")) {
+                            Opcion = 3;
+                        }
+                        break;
+
+                    case 3:
+                        System.out.println("\nGracias por utilizar el sistema.");
+                        break;
+
+                    default:
+                        System.out.println("\nOpción inválida. Intente nuevamente.");
+                }
+            } while (Opcion != 3);
+
+            scanner.close();
+        }
+
+        // REGISTRO ENVIO NACIONAL PENDIENTE 
+    }
+
+
