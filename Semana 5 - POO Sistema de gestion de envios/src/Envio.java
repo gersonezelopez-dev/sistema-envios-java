@@ -221,7 +221,164 @@ import java.util.Scanner;
             scanner.close();
         }
 
-        // REGISTRO ENVIO NACIONAL PENDIENTE 
+        // REGISTRO ENVIO NACIONAL PENDIENTE aca me quede
     }
 
+        public static void registrarEnvioNacional(Scanner scanner) {
+
+            System.out.println("\n--- REGISTRO ENVÍO NACIONAL ---");
+
+            String codigo =
+                    leerTexto(scanner,
+                            "Código del envío: ");
+
+            String destinatario =
+                    leerTexto(scanner,
+                            "Nombre del destinatario: ");
+
+            double peso =
+                    leerDoublePositivo(scanner,
+                            "Peso del paquete en kg: ");
+
+            String departamento =
+                    leerTexto(scanner,
+                            "Departamento de destino: ");
+
+            double distancia =
+                    leerDoublePositivo(scanner,
+                            "Distancia en kilómetros: ");
+
+    // CAMBIO DE FORMA O COMPORTAMIENTO
+
+            Envio envio = new EnvioNacional(
+                    codigo,
+                    destinatario,
+                    peso,
+                    departamento,
+                    distancia
+            );
+
+            envio.mostrarResumen(true);
+        }
+
+
+        public static void registrarEnvioInternacional(Scanner scanner) {
+
+            System.out.println(
+                    "\n--- REGISTRO ENVÍO INTERNACIONAL ---");
+
+            String codigo =
+                    leerTexto(scanner,
+                            "Código del envío: ");
+
+            String destinatario =
+                    leerTexto(scanner,
+                            "Nombre del destinatario: ");
+
+            double peso =
+                    leerDoublePositivo(scanner,
+                            "Peso del paquete en kg: ");
+
+            String pais =
+                    leerTexto(scanner,
+                            "País de destino: ");
+
+            // Polimorfismo
+            Envio envio = new EnvioInternacional(
+                    codigo,
+                    destinatario,
+                    peso,
+                    pais
+            );
+
+            envio.mostrarResumen(true);
+        }
+
+        public static String leerTexto(Scanner scanner, String mensaje) {
+
+            String texto;
+
+            do {
+
+                System.out.print(mensaje);
+                texto = scanner.nextLine().trim();
+
+                if (texto.isEmpty()) {
+                    System.out.println(
+                            "Error: este campo no puede estar vacío.");
+                }
+
+            } while (texto.isEmpty());
+
+            return texto;
+        }
+
+
+        public static double leerDoublePositivo(
+                Scanner scanner,
+                String mensaje) {
+
+            double numero = 0;
+            boolean valido = false;
+
+            while (!valido) {
+
+                System.out.print(mensaje);
+
+                String entrada = scanner.nextLine().trim();
+
+                try {
+
+                    numero = Double.parseDouble(entrada);
+
+                    if (numero > 0) {
+
+                        valido = true;
+
+                    } else {
+
+                        System.out.println(
+                                "Error: el valor debe ser mayor que cero.");
+                    }
+
+                } catch (NumberFormatException e) {
+
+                    System.out.println(
+                            "Error: ingrese un número válido.");
+                }
+            }
+
+            return numero;
+        }
+
+
+        public static int leerEntero(
+                Scanner scanner,
+                String mensaje) {
+
+            int numero = 0;
+            boolean valido = false;
+
+            while (!valido) {
+
+                System.out.print(mensaje);
+
+                String entrada = scanner.nextLine().trim();
+
+                try {
+
+                    numero = Integer.parseInt(entrada);
+                    valido = true;
+
+                } catch (NumberFormatException e) {
+
+                    System.out.println(
+                            "Error: ingrese un número entero válido.");
+                }
+            }
+
+            return numero;
+        }
+
+        
 
